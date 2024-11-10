@@ -246,7 +246,7 @@ class XlsView extends SerializedView
      * @param array<string>|null $rowData Row data
      * @return string CSV with all data to date
      */
-    protected function _renderRow(?array $rowData = null, int $rowNum): void
+    protected function _renderRow(array $rowData = null, int $rowNum): void
     {
         $serialize = $this->getConfig('serialize');
         $columns = $this->_getColumns($serialize);
