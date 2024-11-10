@@ -42,7 +42,7 @@ class XlsViewPlugin extends BasePlugin
          * @link https://book.cakephp.org/4/en/controllers/request-response.html#checking-request-conditions
          */
         ServerRequest::addDetector(
-            'csv',
+            'xls',
             [
                 'accept' => ['application/vnd.ms-excel'],
                 'param' => '_ext',

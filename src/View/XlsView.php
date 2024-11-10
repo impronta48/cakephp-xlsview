@@ -135,7 +135,7 @@ class XlsView extends SerializedView
      */
     private function _getColumns(array|string $serialize): array
     {
-        $columns = $this->getConfig('header');
+        $columns = $this->getConfig('columns');
         if ($columns === null) {
             $columns = array_keys($this->viewVars[$serialize]);
         }
@@ -195,12 +195,13 @@ class XlsView extends SerializedView
 
         $row = 1;
         foreach ((array)$serialize as $viewVar) {
-            $row++;
+            
             if (is_scalar($this->viewVars[$viewVar])) {
                 throw new CakeException("'" . $viewVar . "' is not an array or iterable object.");
             }
 
             foreach ($this->viewVars[$viewVar] as $_data) {
+                $row++;
                 if ($_data instanceof EntityInterface) {
                     $_data = $_data->toArray();
                 }
