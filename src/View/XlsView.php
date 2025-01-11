@@ -135,7 +135,7 @@ class XlsView extends SerializedView
      */
     private function _getColumns(array|string $serialize): array
     {
-        $columns = $this->getConfig('columns');
+        $columns = $this->getConfig('header');
         if ($columns === null) {
             $columns = array_keys($this->viewVars[$serialize]);
         }
@@ -158,9 +158,9 @@ class XlsView extends SerializedView
         $columns = $this->_getColumns($serialize);
 
         $row = '1';
-        $col = 'A';
+        $col = '1';
         foreach ($columns as $c) {
-                $this->sheet->setCellValue("$col$row", $c);
+                $this->sheet->setCellValue([$col,$row], $c);
                 $col++;
         }
         $this->_renderContent();
