@@ -244,17 +244,17 @@ class XlsView extends SerializedView
      * Aggregates the rows into a single XLS
      *
      * @param array<string>|null $rowData Row data
-     * @return string CSV with all data to date
+     * @return string Xml with all data to date
      */
     protected function _renderRow(array $rowData = null, int $rowNum): void
     {
         $serialize = $this->getConfig('serialize');
         $columns = $this->_getColumns($serialize);
-        $col = 'A';
+        $col = '1';
 
         foreach ($columns as $c) {
             $value = $rowData[$c] ?? '';
-            $this->sheet->setCellValue("$col$rowNum", $value);
+            $this->sheet->setCellValue([$col,$rowNum], $value);
             $col++;
         }
     }

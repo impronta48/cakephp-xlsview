@@ -36,7 +36,7 @@ class XlsViewPlugin extends BasePlugin
     public function bootstrap(PluginApplicationInterface $app): void
     {
         /**
-         * Add a request detector named "csv" to check whether the request was for a CSV,
+         * Add a request detector named "Xml" to check whether the request was for a Xml,
          * either through accept header or file extension
          *
          * @link https://book.cakephp.org/4/en/controllers/request-response.html#checking-request-conditions

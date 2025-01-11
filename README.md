@@ -10,7 +10,7 @@ I needed to quickly export XLS of stuff in the database. Using a view class to
 iterate manually would be a chore to replicate for each export method, so I
 figured it would be much easier to do this with a custom view class,
 like JsonView or XmlView.
-This Repo is Based on the work of https://github.com/FriendsOfCake/cakephp-csvview/
+This Repo is Based on the work of https://github.com/FriendsOfCake/cakephp-Csvview/
 
 ## Installation
 

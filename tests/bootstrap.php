@@ -37,7 +37,7 @@ if (!getenv('db_dsn')) {
     putenv('db_dsn=sqlite:///:memory:');
 }
 Configure::write('App', [
-    'namespace' => 'CsvView\Test\App',
+    'namespace' => 'XmlView\Test\App',
     'encoding' => 'UTF-8',
     'paths' => [
         'templates' => [dirname(__FILE__) . DS . 'test_app' . DS . 'templates' . DS],

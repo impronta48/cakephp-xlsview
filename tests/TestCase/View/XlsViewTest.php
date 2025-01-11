@@ -78,7 +78,7 @@ class XlsViewTest extends TestCase
 
         $data = [['test']];
         $this->view->set(['data' => $data])
-            ->setConfig(['serialize' => 'data', 'bom' => true, 'csvEncoding' => 'UTF-16LE']);
+            ->setConfig(['serialize' => 'data', 'bom' => true, 'XmlEncoding' => 'UTF-16LE']);
         $output = $this->view->render();
 
         $expected = chr(0xFF) . chr(0xFE) . mb_convert_encoding('test' . PHP_EOL, 'UTF-16LE', 'UTF-8');
@@ -104,7 +104,7 @@ class XlsViewTest extends TestCase
             ['test3'],
         ];
         $this->view->set(['data' => $data])
-            ->setConfig(['serialize' => 'data', 'bom' => true, 'csvEncoding' => 'UTF-8']);
+            ->setConfig(['serialize' => 'data', 'bom' => true, 'XmlEncoding' => 'UTF-8']);
         $output = $this->view->render();
 
         $bom = chr(0xEF) . chr(0xBB) . chr(0xBF);
@@ -131,7 +131,7 @@ class XlsViewTest extends TestCase
             ['test2'],
         ];
         $this->view->set(['data' => $data])
-            ->setConfig(['header' => $header, 'serialize' => 'data', 'bom' => true, 'csvEncoding' => 'UTF-8']);
+            ->setConfig(['header' => $header, 'serialize' => 'data', 'bom' => true, 'XmlEncoding' => 'UTF-8']);
         $output = $this->view->render();
 
         $bom = chr(0xEF) . chr(0xBB) . chr(0xBF);
@@ -200,7 +200,7 @@ class XlsViewTest extends TestCase
         ];
         $this->view
             ->set('data', $data)
-            ->setConfig(['serialize' => 'data', 'dataEncoding' => 'UTF-8', 'csvEncoding' => 'SJIS']);
+            ->setConfig(['serialize' => 'data', 'dataEncoding' => 'UTF-8', 'XmlEncoding' => 'SJIS']);
         $output = $this->view->render();
 
         $expected = iconv('UTF-8', 'SJIS', 'a,b,c' . PHP_EOL . '1,2,3' . PHP_EOL . 'あなた,と,私' . PHP_EOL);
@@ -228,7 +228,7 @@ class XlsViewTest extends TestCase
         ];
         $this->view
             ->set('data', $data)
-            ->setConfig(['serialize' => 'data', 'dataEncoding' => 'UTF-8', 'csvEncoding' => 'SJIS', 'extension' => 'mbstring']);
+            ->setConfig(['serialize' => 'data', 'dataEncoding' => 'UTF-8', 'XmlEncoding' => 'SJIS', 'extension' => 'mbstring']);
         $output = $this->view->render();
 
         $expected = mb_convert_encoding('a,b,c' . PHP_EOL . '1,2,3' . PHP_EOL . 'あなた,と,私' . PHP_EOL, 'SJIS', 'UTF-8');
@@ -418,13 +418,13 @@ class XlsViewTest extends TestCase
         $this->view->setConfig(['serialize' => 'user', 'extract' => $_extract]);
         $output = $this->view->render();
 
-        $expected = <<<CSV
+        $expected = <<<Xml
 José,,äöü
 "Including,Comma","Containing""char",Containing'char
 "Some Space","A
 Newline","A\tTab"
 
-CSV;
+Xml;
         $this->assertTextEquals($expected, $output);
         $this->assertSame('application/vnd.ms-excel', $this->view->getResponse()->getType());
     }
